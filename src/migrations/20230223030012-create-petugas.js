@@ -27,7 +27,8 @@ module.exports = {
       level: {
         allowNull: false,
 
-        type: Sequelize.ENUM('admin', 'petugas')
+        type: Sequelize.ENUM(["admin", "petugas"]),
+        // values: ["admin", "petugas"]
       },
       createdAt: {
         allowNull: false,

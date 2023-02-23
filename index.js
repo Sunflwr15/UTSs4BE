@@ -8,7 +8,7 @@ const { sequelize } = require("./src/models");
 const app = express();
 
 app.use(express.json());
-// app.use(route);
+app.use(route);
 app.listen(port, host, async () => {
   try {
     await sequelize.authenticate();

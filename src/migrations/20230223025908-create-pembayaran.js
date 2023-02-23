@@ -12,12 +12,22 @@ module.exports = {
 
       id_petugas: {
         allowNull: false,
-
         type: Sequelize.INTEGER,
+        references: {
+          as: "id_petugas",
+          key: "id_petugas",
+          model: "petugas",
+        },
       },
       nisn: {
         allowNull: false,
-
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
+        references: {
+          as: "nisn",
+          key: "nisn",
+          model: "siswas",
+        },
         type: Sequelize.STRING,
       },
       tgl_dibayar: {
@@ -37,7 +47,13 @@ module.exports = {
       },
       id_spp: {
         allowNull: false,
-
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
+        references: {
+          as: "id_spp",
+          key: "id_spp",
+          model: "siswas",
+        },
         type: Sequelize.INTEGER,
       },
       jumlah_bayar: {

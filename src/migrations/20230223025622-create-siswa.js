@@ -18,7 +18,13 @@ module.exports = {
       },
       id_kelas: {
         allowNull: false,
-
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
+        references: {
+          as: "id_kelas",
+          key: "id_kelas",
+          model: "kelas",
+        },
         type: Sequelize.INTEGER,
       },
       alamat: {
@@ -34,13 +40,13 @@ module.exports = {
       id_spp: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        // onDelete: "CASCADE",
-        // onUpdate: "CASCADE",
-        // references: {
-        //   as: "id",
-        //   key: "id_spp",
-        //   model: "spps",
-        // },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
+        references: {
+          as: "id",
+          key: "id_spp",
+          model: "spps",
+        },
       },
       createdAt: {
         allowNull: false,
