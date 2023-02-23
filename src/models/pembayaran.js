@@ -11,15 +11,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      pembayaran.belongsTo(models.siswa, {as: "nisn", foreignKey: "nisn"})
-      pembayaran.belongsTo(models.siswa, {as: "id_spp", foreignKey: "id_spp"})
     }
   }
   pembayaran.init({
     id_pembayaran: DataTypes.INTEGER,
     id_petugas: DataTypes.INTEGER,
     nisn: DataTypes.STRING,
-    tgl_bayar: DataTypes.DATE,
+    tgl_dibayar: DataTypes.DATE,
     bulan_dibayar: DataTypes.STRING,
     tahun_dibayar: DataTypes.STRING,
     id_spp: DataTypes.INTEGER,

@@ -9,13 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      siswa.belongsTo(models.spp, {
-        as: "id_spp",
-        foreignKey: "id_spp",
-      });
-      siswa.belongsTo(models.kelas, { as: "id_kelas", foreignKey: "id_kelas" });
-      siswa.hasMany(models.pembayaran, { as: "nisn", foreignKey: "nisn" });
-      siswa.hasMany(models.pembayaran, { as: "nisn", foreignKey: "nisn" });
+      // siswa.belongsTo(models.spp, { as: "spp", foreignKey: "id_spp",  });
     }
   }
   siswa.init(
@@ -24,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       nis: DataTypes.STRING,
       nama: DataTypes.STRING,
       id_kelas: DataTypes.INTEGER,
-      alamat: DataTypes.STRING,
+      alamat: DataTypes.TEXT,
       no_telp: DataTypes.STRING,
       id_spp: DataTypes.INTEGER,
     },

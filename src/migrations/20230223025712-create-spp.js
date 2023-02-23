@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("spp", {
+    await queryInterface.createTable("spps", {
       id_spp: {
         allowNull: false,
         autoIncrement: true,
@@ -10,14 +10,10 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       tahun: {
-        allowNull: false,
-
-        type: Sequelize.INTEGER(11),
+        type: Sequelize.INTEGER,
       },
       nominal: {
-        allowNull: false,
-
-        type: Sequelize.INTEGER(11),
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,
@@ -30,6 +26,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("spp");
+    await queryInterface.dropTable("spps");
   },
 };

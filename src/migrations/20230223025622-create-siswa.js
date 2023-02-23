@@ -2,32 +2,23 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("siswa", {
+    await queryInterface.createTable("siswas", {
       nisn: {
         allowNull: false,
-        // autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.CHAR(10),
+        type: Sequelize.STRING,
       },
       nis: {
-        allowNull: false,
-
-        type: Sequelize.CHAR(8),
+        type: Sequelize.STRING,
       },
       nama: {
         allowNull: false,
 
-        type: Sequelize.STRING(35),
+        type: Sequelize.STRING,
       },
       id_kelas: {
-        onDelete: "CASCADE",
-        onUpdate: "CASCADE",
-        references: {
-          model: "kelas",
-          key: "id_kelas",
-          as: "id_kelas",
-        },
         allowNull: false,
+
         type: Sequelize.INTEGER,
       },
       alamat: {
@@ -38,18 +29,18 @@ module.exports = {
       no_telp: {
         allowNull: false,
 
-        type: Sequelize.STRING(13),
+        type: Sequelize.STRING,
       },
       id_spp: {
         allowNull: false,
-        onDelete: "CASCADE",
-        onUpdate: "CASCADE",
-        references: {
-          model: "spp",
-          key: "id_spp",
-          as: "id_spp",
-        },
         type: Sequelize.INTEGER,
+        // onDelete: "CASCADE",
+        // onUpdate: "CASCADE",
+        // references: {
+        //   as: "id",
+        //   key: "id_spp",
+        //   model: "spps",
+        // },
       },
       createdAt: {
         allowNull: false,
@@ -62,6 +53,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("siswa");
+    await queryInterface.dropTable("siswas");
   },
 };

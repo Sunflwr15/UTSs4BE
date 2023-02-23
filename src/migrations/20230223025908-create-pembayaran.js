@@ -9,39 +9,40 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+
       id_petugas: {
+        allowNull: false,
+
         type: Sequelize.INTEGER,
       },
       nisn: {
-        onDelete: "CASCADE",
-        onUpdate: "CASCADE",
-        references: {
-          model: "siswa",
-          key: "nisn",
-          as: "nisn",
-        },
+        allowNull: false,
+
         type: Sequelize.STRING,
       },
-      tgl_bayar: {
+      tgl_dibayar: {
+        allowNull: false,
+
         type: Sequelize.DATE,
       },
       bulan_dibayar: {
+        allowNull: false,
+
         type: Sequelize.STRING,
       },
       tahun_dibayar: {
+        allowNull: false,
+
         type: Sequelize.STRING,
       },
       id_spp: {
+        allowNull: false,
+
         type: Sequelize.INTEGER,
-        onDelete: "CASCADE",
-        onUpdate: "CASCADE",
-        references: {
-          model: "siswa",
-          key: "id_spp",
-          as: "id_spp",
-        },
       },
       jumlah_bayar: {
+        allowNull: false,
+
         type: Sequelize.INTEGER,
       },
       createdAt: {
