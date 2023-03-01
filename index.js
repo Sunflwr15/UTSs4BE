@@ -4,9 +4,10 @@ const host = "localhost";
 const express = require("express");
 const route = require("./src/routes/route");
 const { sequelize } = require("./src/models");
+const cors = require('cors');
 
 const app = express();
-
+app.use(cors());
 app.use(express.json());
 app.use(route);
 app.listen(port, host, async () => {

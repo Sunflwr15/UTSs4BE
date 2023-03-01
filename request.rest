@@ -1,2 +1,32 @@
 ###
 GET http://localhost:1040/getlistSiswa
+
+###
+POST  http://localhost:1040/createSiswa
+Content-Type: application/json
+
+{
+    "nisn": "1234567890",
+    "nis": "12345678",
+    "nama": "tes",
+    "id_kelas": 10,
+    "alamat": "ADWDAWDSDQW",
+    "no_telp": "10129321093",
+    "id_spp": 1
+}
+###
+DELETE http://localhost:1040/deleteSiswa/7
+
+###
+PUT  http://localhost:1040/updateSiswa/8
+Content-Type: application/json
+
+{
+     "nisn": "1234567890",
+    "nis": "12345678",
+    "nama": "anadw",
+    "id_kelas": 10,
+    "alamat": "ADWDAWDSDQW",
+    "no_telp": "10129321093",
+    "id_spp": 1
+}

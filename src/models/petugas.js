@@ -10,14 +10,13 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       petugas.hasMany(models.pembayaran, {
-        as: "idpetugas",
-        foreignKey: "id_petugas",
+        as: "petugas",
+        foreignKey: "id",
       });
     }
   }
   petugas.init(
     {
-      id_petugas: DataTypes.INTEGER,
       username: DataTypes.STRING,
       password: DataTypes.STRING,
       nama_petugas: DataTypes.STRING,

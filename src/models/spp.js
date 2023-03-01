@@ -11,11 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      spp.hasMany(models.siswa, {as: "spp", foreignKey: "id_spp"})
+      spp.hasMany(models.siswa, {as: "spp", foreignKey: "id"})
     }
   }
   spp.init({
-    id_spp: DataTypes.INTEGER,
+    // id_spp: DataTypes.INTEGER,
     tahun: DataTypes.INTEGER,
     nominal: DataTypes.INTEGER
   }, {
