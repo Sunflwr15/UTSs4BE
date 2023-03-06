@@ -1,12 +1,29 @@
 const dataUser = require("../models").siswa;
+const models = require("../models");
 
 async function getSiswaList(req, res) {
   try {
-    const user = await dataUser.findAndCountAll();
+    const user = await dataUser.findAndCountAll({
+      // where: { nama: nama, nis: nis },
+      attributes: ["id", "nisn", "nis", "nama", "alamat", "no_telp", "level"],
+      include: [
+        {
+          as: "kelas",
+          model: models.kelas,
+          attributes: ["nama_kelas"],
+        },
+        {
+          as: "spp",
+          model: models.spp,
+          attributes: ["tahun", "nominal"],
+        },
+      ],
+    });
     // console.log(user);
     res.status(200).json({
       status: "success",
       msg: "List User Ditemukan",
+      req: req.level,
       pagination: {
         totalData: user.count,
       },
@@ -52,9 +69,10 @@ async function createSiswa(req, res) {
     });
   } catch (error) {
     console.log(error);
-    res.json({
+    res.status(422).json({
       status: "failed",
       msg: "terdapat kesalahan pada backend",
+      error
     });
   }
 }

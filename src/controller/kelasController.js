@@ -4,8 +4,7 @@ async function getKelasList(req, res) {
     const Kelas = await dataKelas.findAndCountAll();
     // console.log(Kelas);
     res.status(200).json({
-      status: "success",
-      req: req.additional.role,    
+      status: "success",    
       msg: "List Kelas Ditemukan",
       pagination: {
         totalData: Kelas.count,

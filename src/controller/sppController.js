@@ -5,7 +5,6 @@ async function getSppList(req, res) {
     // console.log(Spp);
     res.status(200).json({
       status: "success",
-      req: req.additional.role,    
       msg: "List Spp Ditemukan",
       pagination: {
         totalData: spp.count,

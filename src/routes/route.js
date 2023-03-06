@@ -1,12 +1,15 @@
 const express = require("express");
-const { loginSiswa, loginPetugas, authMe } = require("../controller/authController");
+const { login, loginPetugas, authMe } = require("../controller/authController");
 const {
   getKelasList,
   createKelas,
   deleteKelas,
   updateKelas,
 } = require("../controller/kelasController");
-const { createPembayaran, getPembayaran } = require("../controller/pembayaranController");
+const {
+  createPembayaran,
+  getPembayaran,
+} = require("../controller/pembayaranController");
 const {
   getPetugasList,
   createPetugas,
@@ -31,18 +34,17 @@ const petugasMid = require("../middleware/petugas");
 const router = express.Router();
 
 // Login
-router.post("/login-siswa", loginSiswa);
-router.post("/login-petugas", loginPetugas);
-router.post("/authSiswa", authMe);
+router.post("/login", login);
 
 router.use(jwtValidateMid);
-
-router.use(petugasMid);
+router.get("/authme", authMe);
+// console.log(jwtValidateMid)
+// router.use(petugasMid);
 // Pembayaran
-router.get('/getListPembayaran', getPembayaran)
+router.get("/getListPembayaran", getPembayaran);
 router.post("/pembayaran", createPembayaran);
 
-router.use(adminMid);
+// router.use(adminMid);
 // Siswa
 router.get("/getlistSiswa", getSiswaList);
 router.post("/createSiswa", createSiswa);

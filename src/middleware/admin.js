@@ -1,6 +1,6 @@
 function adminMid(req, res, next) {
   try {
-    if (req.additional.role !== "admin") {
+    if (req.level !== "admin") {
         // console.log(req);
       return res.json({
         msg: "Anda tidak memiliki hak akses untuk fitur ini",

@@ -3,7 +3,7 @@ require("dotenv").config();
 
 const jwtValidateMid = (req, res, next) => {
   const authorization = req.headers.authorization;
-//   console.log(authorization);
+  console.log(authorization);
   if (!authorization)
     return res.status(401).json({
       msg: "Unauthorized",
@@ -18,9 +18,12 @@ const jwtValidateMid = (req, res, next) => {
         err: err,
       });
     } else {
+      console.log("TES");
       req.id = decoded.id;
-      req.nama = decoded.name;
-      req.additional = decoded.additional;
+      req.nama = decoded.nama;
+      req.namaPetugas = decoded.namaPetugas;
+      req.level = decoded.level;
+      req.nis = decoded.nis;
       next();
     }
   });

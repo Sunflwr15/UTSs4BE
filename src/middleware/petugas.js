@@ -1,6 +1,6 @@
 function petugasMid(req, res, next) {
   try {
-    if (req.additional.role === "petugas" || req.additional.role === "admin") {
+    if (req.level === "petugas" || req.level === "admin") {
     //   console.log(req);
       return next();
     } else;
