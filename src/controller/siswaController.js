@@ -31,38 +31,54 @@ async function getSiswaList(req, res) {
     });
   } catch (error) {
     console.log(error);
-    res.status(400).json({
-      msg: "terdapat kesalahan pada backend",
+    // res.json({
+    //   msg: "terdapat kesalahan pada backend",
+    // });
+  }
+}
+async function getDetailSiswa(req, res) {
+  try {
+    const { id } = req.params;
+    const user = await dataUser.findOne({
+      where: { id: id },
+      attributes: ["id", "nisn", "nis", "nama", "alamat", "no_telp", "level"],
+      include: [
+        {
+          as: "kelas",
+          model: models.kelas,
+          attributes: ["nama_kelas", "id"],
+        },
+        {
+          as: "spp",
+          model: models.spp,
+          attributes: ["tahun", "nominal", "id"],
+        },
+      ],
     });
+    // console.log(user);
+    res.status(200).json({
+      status: "success",
+      msg: "Siswa ditemukan",
+      req: req.level,
+      pagination: {
+        // totalData: user.count,
+      },
+      response: user,
+    });
+  } catch (error) {
+    console.log(error);
+    // res.json({
+    //   msg: "terdapat kesalahan pada backend",
+    // });
   }
 }
 
 async function createSiswa(req, res) {
   try {
-    // const nisnRandom = Math.floor(1000000000 + Math.random() * 9000000000).toString();
-    // const nisRandom = Math.floor(Math.random() * 100000000) + 1;
-    // const { nama, id_kelas, alamat, no_telp, id_spp } = req.body;
-    // console.log({
-    //   nisn: nisnRandom,
-    //   nis: nisRandom,
-    //   nama,
-    //   id_kelas,
-    //   alamat,
-    //   no_telp,
-    //   id_spp,
-    // });
-    // await dataUser.create({
-    //   nisn: nisnRandom,
-    //   nis: nisRandom,
-    //   nama,
-    //   id_kelas,
-    //   alamat,
-    //   no_telp,
-    //   id_spp,
-    // });
-    // console.log(user);
     const payload = req.body;
+
     await dataUser.create(payload);
+    console.log(payload);
     res.status(200).json({
       status: "success",
       msg: "Siswa telah didaftarkan",
@@ -72,7 +88,7 @@ async function createSiswa(req, res) {
     res.status(422).json({
       status: "failed",
       msg: "terdapat kesalahan pada backend",
-      error
+      error,
     });
   }
 }
@@ -82,6 +98,8 @@ async function updateSiswa(req, res) {
     const { id } = req.params;
     const payload = req.body;
     const user = await dataUser.findByPk(id);
+    // console.log("id", id);
+    // console.log("payload", payload);
     console.log(user);
     if (user == null) {
       res.status(200).json({
@@ -127,4 +145,10 @@ async function deleteSiswa(req, res) {
   }
 }
 
-module.exports = { getSiswaList, createSiswa, deleteSiswa, updateSiswa };
+module.exports = {
+  getSiswaList,
+  getDetailSiswa,
+  createSiswa,
+  deleteSiswa,
+  updateSiswa,
+};

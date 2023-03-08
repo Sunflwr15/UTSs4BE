@@ -15,12 +15,14 @@ const {
   createPetugas,
   deletePetugas,
   updatePetugas,
+  getDetailPetugas,
 } = require("../controller/petugasController");
 const {
   getSiswaList,
   createSiswa,
   deleteSiswa,
   updateSiswa,
+  getDetailSiswa,
 } = require("../controller/siswaController");
 const {
   getSppList,
@@ -31,6 +33,8 @@ const {
 const adminMid = require("../middleware/admin");
 const { jwtValidateMid } = require("../middleware/jwt");
 const petugasMid = require("../middleware/petugas");
+const ValidationResult = require("../middleware/validationResult");
+const { CreateUserValidator } = require("../validators/userValidator");
 const router = express.Router();
 
 // Login
@@ -47,11 +51,13 @@ router.post("/pembayaran", createPembayaran);
 // router.use(adminMid);
 // Siswa
 router.get("/getlistSiswa", getSiswaList);
-router.post("/createSiswa", createSiswa);
+router.get("/getDetailSiswa/:id", getDetailSiswa);
+router.post("/createSiswa", CreateUserValidator, ValidationResult, createSiswa);
 router.delete("/deleteSiswa/:id", deleteSiswa);
 router.put("/updateSiswa/:id", updateSiswa);
 //Petugas
 router.get("/getlistPetugas", getPetugasList);
+router.get("/getDetailPetugas/:id", getDetailPetugas);
 router.post("/createPetugas", createPetugas);
 router.delete("/deletePetugas/:id", deletePetugas);
 router.put("/updatePetugas/:id", updatePetugas);

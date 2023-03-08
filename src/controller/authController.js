@@ -21,14 +21,14 @@ async function login(req, res) {
         process.env.JWT_SCRIPT,
         { expiresIn: "7d" }
       );
-      if (petugas === null) {
-        res.status(422).json({
+      if (!petugas) {
+        return res.status(422).json({
           status: "failed",
           msg: "petugas tidak ditemukan",
           // data: siswa || petugas,
         });
       } else {
-        res.json({
+        return res.json({
           status: "success",
           msg: "login berhasil",
           token: tokenPetugas,
@@ -64,14 +64,14 @@ async function login(req, res) {
         process.env.JWT_SCRIPT,
         { expiresIn: "7d" }
       );
-      if (siswa === null) {
-        res.status(422).json({
+      if (!siswa) {
+        return res.status(422).json({
           status: "failed",
-          msg: "petugas tidak ditemukan",
+          msg: "siswa tidak ditemukan",
           // data: siswa || petugas,
         });
       } else {
-        res.json({
+        return res.json({
           status: "success",
           msg: "login berhasil",
           token: tokenSiswa,

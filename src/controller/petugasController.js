@@ -7,7 +7,7 @@ async function getPetugasList(req, res) {
     // console.log(Petugas);
     res.status(200).json({
       status: "success",
-      req: req.additional.role,
+      // req: req.additional.role,
       msg: "List Petugas Ditemukan",
       pagination: {
         totalData: petugas.count,
@@ -19,6 +19,30 @@ async function getPetugasList(req, res) {
     res.status(400).json({
       msg: "terdapat kesalahan pada backend",
     });
+  }
+}
+
+async function getDetailPetugas(req, res) {
+  try {
+    const { id } = req.params;
+    const user = await dataPetugas.findOne({
+      where: { id: id },
+    });
+    // console.log(user);
+    res.status(200).json({
+      status: "success",
+      msg: "Petugas ditemukan",
+      req: req.level,
+      pagination: {
+        // totalData: user.count,
+      },
+      response: user,
+    });
+  } catch (error) {
+    console.log(error);
+    // res.json({
+    //   msg: "terdapat kesalahan pada backend",
+    // });
   }
 }
 
@@ -85,6 +109,7 @@ async function deletePetugas(req, res) {
 
 module.exports = {
   getPetugasList,
+  getDetailPetugas,
   createPetugas,
   updatePetugas,
   deletePetugas,
